@@ -1061,3 +1061,11 @@ also be most welcome. My favorites are:
 * [The Internet Archive](https://archive.org/donate/)
 * [Rails Girls](https://railsgirlssummerofcode.org/)
 * [Wikipedia](https://wikimediafoundation.org/support/)
+
+
+<h3 name="lanesync-test">
+Why does this fork have a 0.1.0 release?
+</h3>
+
+This fork of ripgrep is used to test LaneSync release tracking against a real
+CI pipeline. Its releases are test releases, not ripgrep releases.
