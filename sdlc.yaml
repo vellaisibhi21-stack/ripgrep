@@ -1,0 +1,86 @@
+version: v1
+name: ripgrep
+traceability:
+  mode: warn
+release_naming:
+  format: semver-plain
+  mapping: R2
+stages:
+  planning:
+    require_milestone: true
+    require_issues_assigned: true
+  development:
+    branch: master
+    deploy_target: dev
+    required_checks:
+      - Compile Fuzz Test Targets
+      - docs
+      - rustfmt
+      - test (beta, ubuntu-latest, beta)
+      - test (macos, macos-latest, nightly)
+      - test (nightly, ubuntu-latest, nightly)
+      - test (pinned, ubuntu-latest, 1.96.0)
+      - test (stable, ubuntu-latest, stable)
+      - test (stable-aarch64, ubuntu-latest, stable, aarch64-unknown-linux-gnu)
+      - test (stable-aarch64-musl, ubuntu-latest, stable,
+        aarch64-unknown-linux-musl)
+      - test (stable-arm-gnueabihf, ubuntu-latest, stable,
+        armv7-unknown-linux-gnueabihf)
+      - test (stable-arm-musleabi, ubuntu-latest, stable,
+        armv7-unknown-linux-musleabi)
+      - test (stable-arm-musleabihf, ubuntu-latest, stable,
+        armv7-unknown-linux-musleabihf)
+      - test (stable-musl, ubuntu-latest, stable, x86_64-unknown-linux-musl)
+      - test (stable-powerpc64, ubuntu-latest, stable,
+        powerpc64-unknown-linux-gnu)
+      - test (stable-riscv64, ubuntu-latest, stable, riscv64gc-unknown-linux-gnu)
+      - test (stable-s390x, ubuntu-latest, stable, s390x-unknown-linux-gnu)
+      - test (stable-x86, ubuntu-latest, stable, i686-unknown-linux-gnu)
+      - test (win-gnu, windows-latest, nightly-x86_64-gnu)
+      - test (win-msvc, windows-latest, nightly)
+      - test (winaarch64-msvc, windows-11-arm, nightly)
+      - wasm
+    required_reviewers:
+      min_approvals: 1
+  testing:
+    branch_pattern: master
+    required_checks:
+      - Compile Fuzz Test Targets
+      - docs
+      - rustfmt
+      - test (beta, ubuntu-latest, beta)
+      - test (macos, macos-latest, nightly)
+      - test (nightly, ubuntu-latest, nightly)
+      - test (pinned, ubuntu-latest, 1.96.0)
+      - test (stable, ubuntu-latest, stable)
+      - test (stable-aarch64, ubuntu-latest, stable, aarch64-unknown-linux-gnu)
+      - test (stable-aarch64-musl, ubuntu-latest, stable,
+        aarch64-unknown-linux-musl)
+      - test (stable-arm-gnueabihf, ubuntu-latest, stable,
+        armv7-unknown-linux-gnueabihf)
+      - test (stable-arm-musleabi, ubuntu-latest, stable,
+        armv7-unknown-linux-musleabi)
+      - test (stable-arm-musleabihf, ubuntu-latest, stable,
+        armv7-unknown-linux-musleabihf)
+      - test (stable-musl, ubuntu-latest, stable, x86_64-unknown-linux-musl)
+      - test (stable-powerpc64, ubuntu-latest, stable,
+        powerpc64-unknown-linux-gnu)
+      - test (stable-riscv64, ubuntu-latest, stable, riscv64gc-unknown-linux-gnu)
+      - test (stable-s390x, ubuntu-latest, stable, s390x-unknown-linux-gnu)
+      - test (stable-x86, ubuntu-latest, stable, i686-unknown-linux-gnu)
+      - test (win-gnu, windows-latest, nightly-x86_64-gnu)
+      - test (win-msvc, windows-latest, nightly)
+      - test (winaarch64-msvc, windows-11-arm, nightly)
+      - wasm
+    required_reviewers:
+      min_approvals: 1
+  evidencing:
+    required_reviewers:
+      min_approvals: 1
+  deployment:
+    target: production
+    deploy_workflow: .github/workflows/release.yml
+    deploy_on_tag: true
+    required_checks: []
+    promotion: manual
+    requires_evidence_approval: true
